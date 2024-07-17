@@ -2,13 +2,13 @@ const express = require("express");
 const { connectMongoDB } = require("./connection");
 const userRouter = require("./routes/user");
 const { logReqRes } = require("./middlewares/index");
+require("dotenv").config();
+
 const app = express();
 const PORT = 8000;
 
 //connection
-connectMongoDB(
-  "mongodb+srv://roshanbam46:bam777rb@nodeexpressprojects.0cmbsu7.mongodb.net/RESTful-API?retryWrites=true&w=majority"
-)
+connectMongoDB(process.env.MONGO_URI)
   .then(() => console.log("Mongo DB connected"))
   .catch((err) => console.log("Mongo Error", err));
 
